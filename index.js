@@ -112,6 +112,9 @@ async function main() {
       case "assigned":
         workItem != null ? await assigned(vm, workItem) : "";
         break;
+      case "unassigned":
+        workItem != null ? await assigned(vm, workItem) : "";
+        break;
       case "labeled":
         workItem != null ? await label(vm, workItem) : "";
         break;
@@ -445,7 +448,7 @@ async function assigned(vm, workItem) {
   if (
     workItem.fields["System.AssignedTo"] != vm.env.assignedTo
   ) {
-    if (vm.env.assignedTo === "") {
+    if (vm.env.assignedTo == "") {
       console.log("Removing assigned to field");
 
       patchDocument.push({
