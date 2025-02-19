@@ -1,0 +1,82 @@
+name: Sync GH issue to Azure DevOps work item
+
+on:
+  issues:
+    types:
+      [opened, edited, closed, reopened, assigned, labeled, unlabeled]
+  issue_comment: 
+    types: [created, edited]
+
+jobs:
+  alert:
+    if: ${{ !github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Get issue details
+      id: issue
+      run: ASSIGNEE_LOGIN=$(gh issue view ${{ github.event.issue.number }} --json assignees | jq -r '.assignees[0].login') && echo "ASSIGNEE_LOGIN=$ASSIGNEE_LOGIN" >> $GITHUB_ENV && echo $ASSIGNEE_LOGIN
+      env:
+        GH_TOKEN: "${{ secrets.GH_REPO_TOKEN }}"
+
+    - name: Parse JSON for assingee and compare to secrets
+      id: retrieve
+      run: |
+        # Parse the JSON string from the secret variable
+        TUPLES_JSON='${{ secrets.DEVELOPER_USERNAMES }}'
+        echo "TUPLES_JSON=$TUPLES_JSON"
+      
+        # Convert JSON string to an array of tuples
+        TUPLES=$(echo "$TUPLES_JSON" | jq -c '.[]')
+      
+        # Define the key to search for
+        SEARCH_KEY="${{ env.ASSIGNEE_LOGIN }}"
+      
+        # Initialize the result variable
+        RESULT=""
+      
+        # Check if SEARCH_KEY is empty
+        if [ -z "$SEARCH_KEY" ]; then
+          echo "No assignee found."
+          echo "ASSIGNEE_STATUS=No assignee found" >> $GITHUB_ENV
+          exit 0
+        fi
+      
+        # Iterate over the tuples to find the matching key
+        for TUPLE in $TUPLES; do
+          KEY=$(echo "$TUPLE" | jq -r '.[0]')
+          VALUE=$(echo "$TUPLE" | jq -r '.[1]')
+          if [ "$KEY" == "$SEARCH_KEY" ]; then
+            RESULT=$VALUE
+            echo "$RESULT"
+            break
+          fi
+        done
+      
+        # Check if RESULT is empty
+        if [ -z "$RESULT" ]; then
+          echo "No matching value found for key: $SEARCH_KEY"
+          echo "ASSIGNEE_STATUS=No matching value found for key: $SEARCH_KEY" >> $GITHUB_ENV
+        else
+          # Store the result in an environment variable
+          echo "ad0_assigned_to=$RESULT" >> $GITHUB_ENV
+          echo "ASSIGNEE_STATUS=Assignee found and assigned" >> $GITHUB_ENV
+        fi
+      env:
+          GH_TOKEN: "${{ secrets.GH_REPO_TOKEN }}"
+    - uses: jessaggie/github-actions-issue-to-work-item@master
+      env:
+          ado_token: "${{ secrets.AZDO_WORK_ITEM_TOKEN }}"
+          github_token: "${{ secrets.GH_REPO_TOKEN }}"
+          ado_organization: "ni"
+          ado_project: "DevCentral"
+          ado_area_path: "DevCentral\\Business Units\\Transportation\\ADAS\\test"
+          ado_wit: "Bug"
+          ado_new_state: "New"
+          ado_active_state: "Active"
+          ado_close_state: "Closed"
+          ado_bypassrules: true
+          ado_assigned_to: ${{ env.ad0_assigned_to }}
+          log_level: 100
+          defaultStoryPoints: 0.5
