@@ -3,7 +3,7 @@ name: Sync GH issue to Azure DevOps work item
 on:
   issues:
     types:
-      [opened, edited, closed, reopened, assigned, labeled, unlabeled]
+      [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled]
   issue_comment: 
     types: [created, edited]
 
@@ -65,7 +65,7 @@ jobs:
         fi
       env:
           GH_TOKEN: "${{ secrets.GH_REPO_TOKEN }}"
-    - uses: ni/github-actions-issue-to-work-item@master
+    - uses: jessaggie/github-actions-issue-to-work-item@master
       env:
           ado_token: "${{ secrets.AZDO_WORK_ITEM_TOKEN }}"
           github_token: "${{ secrets.GH_REPO_TOKEN }}"
@@ -80,3 +80,4 @@ jobs:
           ado_assigned_to: ${{ env.ad0_assigned_to }}
           log_level: 100
           defaultStoryPoints: 0.5
+
