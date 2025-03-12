@@ -178,17 +178,6 @@ async function create(vm) {
       path: "/fields/System.Tags",
       value: "GitHub Issue; " + vm.repo_name
     },
-    // {
-    //   op: "add",
-    //   path: "/fields/System.Parent",
-    //   value: 3049647//vm.env.parentID
-    // },
-    // {
-    //   op: "add",
-    //   path: "/fields/Custom.ParentTitle",
-    //   value: "debug"
-    // },
-
 {
           op: "add",
           path: "/relations/-",
@@ -362,43 +351,21 @@ async function update(vm, workItem) {
       }
     );
   }
-
-  // if (workItem.fields["System.Parent"] != vm.env.parentID) {
-  //   patchDocument.push(
-  //     {
-  //       op: "add",
-  //       path: "/fields/System.Parent",
-  //       value: 3049647//vm.env.parentID
-  //     },
-  //     {
-  //       op: "add",
-  //       path: "/fields/System.ParentID",
-  //       value: 3049647//vm.env.parentID
-  //     },
-  //     {
-  //       op: "add",
-  //       path: "/fields/Custom.ParentTitle",
-  //       value: "debug"
-  //     }
-  //   );
-  //   }
-
-
-    if (!workItem.relations || !workItem.relations.some(relation => relation.rel === "System.LinkTypes.Hierarchy-Reverse" && relation.url.includes(vm.env.parentID))) {
-      patchDocument.push(
-        {
-          op: "add",
-          path: "/relations/-",
-          value: {
-            rel: "System.LinkTypes.Hierarchy-Reverse",
-            url: `https://dev.azure.com/{organization}/{project}/_apis/wit/workItems/${vm.env.parentID}`,
-            attributes: {
-              comment: "Making this work item a child of the parent work item"
-            }
-          }
-        }
-      );
-    }
+    // if (!workItem.relations || !workItem.relations.some(relation => relation.rel === "System.LinkTypes.Hierarchy-Reverse" && relation.url.includes(vm.env.parentID))) {
+    //   patchDocument.push(
+    //     {
+    //       op: "add",
+    //       path: "/relations/-",
+    //       value: {
+    //         rel: "System.LinkTypes.Hierarchy-Reverse",
+    //         url: `https://dev.azure.com/{organization}/{project}/_apis/wit/workItems/${vm.env.parentID}`,
+    //         attributes: {
+    //           comment: "Making this work item a child of the parent work item"
+    //         }
+    //       }
+    //     }
+    //   );
+    // }
 
   var commentEdited = false;
   if (vm.comment_text != "") {
