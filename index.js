@@ -180,13 +180,13 @@ async function create(vm) {
     },
     {
       op: "add",
-      path: "/fields/Custom.ParentID",
-      value: 2704757//vm.env.parentID
+      path: "/fields/Custom.Parent",
+      value: 3049647//vm.env.parentID
     },
     {
       op: "add",
       path: "/fields/Custom.ParentTitle",
-      value: "Bugs - Image Path"
+      value: "debug"
     },
     {
       op: "add",
