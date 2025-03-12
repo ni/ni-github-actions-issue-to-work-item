@@ -180,7 +180,7 @@ async function create(vm) {
     },
     {
       op: "add",
-      path: "/fields/Custom.Parent",
+      path: "/fields/System.Parent",
       value: 3049647//vm.env.parentID
     },
     {
