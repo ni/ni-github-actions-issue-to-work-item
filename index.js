@@ -181,13 +181,13 @@ async function create(vm) {
     {
       op: "add",
       path: "/fields/Custom.ParentID",
-      value: 3049647//vm.env.parentID
+      value: 2704757//vm.env.parentID
     },
-    // {
-    //   op: "add",
-    //   path: "/fields/Custom.ParentTitle",
-    //   value: vm.env.parentTitle
-    // },
+    {
+      op: "add",
+      path: "/fields/Custom.ParentTitle",
+      value: "Bugs - Image Path"
+    },
     {
       op: "add",
       path: "/relations/-",
