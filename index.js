@@ -189,9 +189,6 @@ async function create(vm) {
             }
           }
         },
-
-
-
     {
       op: "add",
       path: "/relations/-",
@@ -351,21 +348,7 @@ async function update(vm, workItem) {
       }
     );
   }
-    // if (!workItem.relations || !workItem.relations.some(relation => relation.rel === "System.LinkTypes.Hierarchy-Reverse" && relation.url.includes(vm.env.parentID))) {
-    //   patchDocument.push(
-    //     {
-    //       op: "add",
-    //       path: "/relations/-",
-    //       value: {
-    //         rel: "System.LinkTypes.Hierarchy-Reverse",
-    //         url: `https://dev.azure.com/{organization}/{project}/_apis/wit/workItems/${vm.env.parentID}`,
-    //         attributes: {
-    //           comment: "Making this work item a child of the parent work item"
-    //         }
-    //       }
-    //     }
-    //   );
-    // }
+
 
   var commentEdited = false;
   if (vm.comment_text != "") {
@@ -778,8 +761,7 @@ function getValuesFromPayload(payload, env) {
 			bypassRules: env.ado_bypassrules != undefined ? env.ado_bypassrules : false,
       logLevel: env.log_level != undefined ? env.log_level : 100,
       assignedTo: env.ado_assigned_to != undefined ? env.ado_assigned_to : "none",
-      parentID: env.ado_parent_id != undefined ? env.ado_parent_id : "none"   //,
-      // parentTitle: env.ado_parent_title != undefined ? env.ado_parent_title : "none"
+      parentID: env.ado_parent_id != undefined ? env.ado_parent_id : "none" 
 		}
 	};
 
