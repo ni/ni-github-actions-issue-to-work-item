@@ -180,6 +180,11 @@ async function create(vm) {
     },
     {
       op: "add",
+      path: "/fields/Custom.ParentID",
+      value: vm.env.parentID
+    },
+    {
+      op: "add",
       path: "/relations/-",
       value: {
         rel: "Hyperlink",
@@ -748,7 +753,8 @@ function getValuesFromPayload(payload, env) {
 			activeState: env.ado_active_state != undefined ? env.ado_active_state : "Active",
 			bypassRules: env.ado_bypassrules != undefined ? env.ado_bypassrules : false,
       logLevel: env.log_level != undefined ? env.log_level : 100,
-      assignedTo: env.ado_assigned_to != undefined ? env.ado_assigned_to : "none"
+      assignedTo: env.ado_assigned_to != undefined ? env.ado_assigned_to : "none",
+      parentID: env.ado_parent_id != undefined ? env.ado_parent_id : "none"
 		}
 	};
 
