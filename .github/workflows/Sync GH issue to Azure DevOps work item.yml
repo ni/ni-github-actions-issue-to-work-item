@@ -78,6 +78,6 @@ jobs:
           ado_close_state: "Closed"
           ado_bypassrules: true
           ado_assigned_to: ${{ env.ad0_assigned_to }}
-          log_level: 100
+          log_level: 300
           defaultStoryPoints: 0.5
 
