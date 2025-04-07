@@ -537,6 +537,25 @@ async function label(vm, workItem) {
     });
   }
 
+//set state based on label if label is in recieved list
+//list defined labels
+const available_labels = ["status-Acknowledged", "status-Active", "status-Closed","status-New","status-Implemented", "status-Pending Validation"];
+//check if label is in list
+console.log("set labels:", vm.label);
+
+if(available_labels.includes(vm.label)){
+  patchDocument.push({
+    op: "add",
+    path: "/fields/System.State",
+    value: vm.label.replace("status-", ""),
+  });
+}
+else
+{
+  console.log("Label not in list");
+}
+
+
   // verbose logging
   if (vm.env.logLevel >= 300) {
     console.log("Print full patch object:");
