@@ -539,7 +539,7 @@ async function label(vm, workItem) {
 
 //set state based on label if label is in recieved list
 //list defined labels
-const available_labels = ["status-Acknowledged", "status-Active", "status-Closed","status-New","status-Implemented", "status-Pending Validation"];
+const available_labels = ["status-Acknowledged", "status-Defined","status-Active", "status-Closed","status-New","status-Implemented", "status-Pending Validation"];
 //check if label is in list
 console.log("set labels:", vm.label);
 
