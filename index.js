@@ -430,6 +430,16 @@ async function close(vm, workItem) {
     value: vm.env.closedState,
   });
 
+
+
+  const closedDate = new Date().toISOString();
+  console.log(closedDate); // Outputs: 2023-10-04T14:23:45.123Z
+  patchDocument.push({
+    op: "add",
+    path: "/fields/Microsoft.VSTS.Common.ClosedDate",
+    value: closedDate,
+  });
+
   if (vm.closed_at != "") {
     patchDocument.push({
       op: "add",
