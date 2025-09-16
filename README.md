@@ -1,3 +1,11 @@
+This is a fork from https://github.com/danhellem/github-actions-issue-to-work-item
+
+I added some extra functionality, allowing the user to sync Github usernames with AzDo usernames, add in parent folder, tag driven workflow, and close by date
+
+
+
+
+
 # Sync GitHub issue to Azure DevOps work item
 
 Create work item in Azure DevOps when a GitHub Issue is created
