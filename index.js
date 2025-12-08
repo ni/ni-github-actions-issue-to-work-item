@@ -650,11 +650,13 @@ async function find(vm) {
     if (vm.env.logLevel >= 300) {
       console.log("Print query results:");
       console.log(queryResult);
+      console.log("team context: ");
+      console.log(teamContext);
+
     }
 
     // if query results = null then i think we have issue with the project name
     if (queryResult == null) {
-      console.log(queryResult);
       console.log("Error: Project name appears to be invalid");
       core.setFailed("Error: Project name appears to be invalid");
       return -1;
