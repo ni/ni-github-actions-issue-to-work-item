@@ -652,6 +652,8 @@ async function find(vm) {
       console.log(queryResult);
       console.log("team context: ");
       console.log(teamContext);
+      console.log("wiql: ");
+      console.log(wiql);
 
     }
 
