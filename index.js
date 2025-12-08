@@ -789,7 +789,7 @@ function getValuesFromPayload(payload, env) {
 			newState: env.ado_new_state != undefined ? env.ado_new_state : "New",
 			activeState: env.ado_active_state != undefined ? env.ado_active_state : "Active",
 			bypassRules: env.ado_bypassrules != undefined ? env.ado_bypassrules : false,
-      logLevel: env.log_level != undefined ? env.log_level : 100,
+      logLevel: env.log_level != undefined ? env.log_level : 300,
       assignedTo: env.ado_assigned_to != undefined ? env.ado_assigned_to : "none",
       parentID: env.ado_parent_id != undefined ? env.ado_parent_id : "none" 
 		}
@@ -815,7 +815,7 @@ function getValuesFromPayload(payload, env) {
   }
   
   // verbose logging
-  if (vm.env.logLevel >= 100) {
+  if (vm.env.logLevel >= 300) {
     console.log("Print vm:");
     console.log(vm);
   }
