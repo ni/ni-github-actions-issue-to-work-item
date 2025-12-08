@@ -276,7 +276,7 @@ async function create(vm) {
     if (workItemSaveResult == null) {
       workItemSaveResult = -1;
 
-      console.log("Error: creatWorkItem failed");
+      console.log("Error: createWorkItem failed");
       console.log(`WIT may not be correct: ${vm.env.wit}`);
       core.setFailed();
     }
@@ -285,7 +285,7 @@ async function create(vm) {
   } catch (error) {
     workItemSaveResult = -1;
 
-    console.log("Error: creatWorkItem failed");
+    console.log("Error: createWorkItem failed");
     console.log(error);
     core.setFailed(error);
   }
@@ -789,7 +789,7 @@ function getValuesFromPayload(payload, env) {
 			project: env.ado_project != undefined ? env.ado_project : "",
 			areaPath: env.ado_area_path != undefined ? env.ado_area_path : "",
 			iterationPath: env.ado_iteration_path != undefined ? env.ado_iteration_path : "",
-			wit: env.ado_wit != undefined ? env.ado_wit : "Issue",
+			wit: env.ado_wit != undefined ? env.ado_wit : "Bug",
 			closedState: env.ado_close_state != undefined ? env.ado_close_state : "Closed",
 			newState: env.ado_new_state != undefined ? env.ado_new_state : "New",
 			activeState: env.ado_active_state != undefined ? env.ado_active_state : "Active",
