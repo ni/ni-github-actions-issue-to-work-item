@@ -654,6 +654,7 @@ async function find(vm) {
 
     // if query results = null then i think we have issue with the project name
     if (queryResult == null) {
+      console.log(queryResult)
       console.log("Error: Project name appears to be invalid");
       core.setFailed("Error: Project name appears to be invalid");
       return -1;
