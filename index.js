@@ -815,7 +815,7 @@ function getValuesFromPayload(payload, env) {
   }
   
   // verbose logging
-  if (vm.env.logLevel >= 300) {
+  if (vm.env.logLevel >= 100) {
     console.log("Print vm:");
     console.log(vm);
   }
