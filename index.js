@@ -645,23 +645,14 @@ async function find(vm) {
 
   try {
     queryResult = await client.queryByWiql(wiql, teamContext.project);
-    queryResult4 = await client.queryByWiql(wiql, "DevCentral");
-
-    queryResult2 = await client.queryById(3161311, teamContext);
-    queryResult3 = await client.queryById(3161311, "DevCentral");
-
-    console.log("Test query by ID result:");
-    console.log(queryResult2);
-    console.log("Test query by ID result3:");
-    console.log(queryResult3);
-    console.log("Test query by ID result4:");
-    console.log(queryResult4);
+  
     // verbose logging
     if (vm.env.logLevel >= 300) {
       console.log("Print query results:");
       console.log(queryResult);
       console.log("team context: ");
       console.log(teamContext);
+      console.log(teamContext.project);
       console.log("wiql: ");
       console.log(wiql);
 
