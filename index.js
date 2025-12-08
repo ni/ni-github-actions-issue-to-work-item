@@ -644,7 +644,7 @@ async function find(vm) {
   }
 
   try {
-    queryResult = await client.queryByWiql(wiql, teamContext);
+    queryResult = await client.queryByWiql(wiql, teamContext.project);
     queryResult4 = await client.queryByWiql(wiql, "DevCentral");
 
     queryResult2 = await client.queryById(3161311, teamContext);
